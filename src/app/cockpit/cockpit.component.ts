@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -11,7 +12,8 @@ export class CockpitComponent implements OnInit {
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   //Do not need these properties any more because I used a local reference in the html file. 
   // newServerName = '';
-     newServerContent = '';
+    //  newServerContent = '';
+    @ViewChild('serverContentInput') serverContentIput: ElementRef;
 
   constructor() { }
 
@@ -22,13 +24,15 @@ export class CockpitComponent implements OnInit {
     console.log(nameInput.value)
     this.serverCreated.emit({
       serverName: nameInput.value, 
-      serverContent: this.newServerContent});
+      serverContent: this.serverContentIput.nativeElement.value
+    });
   }
 
   onAddBlueprint(nameInput: HTMLInputElement){
     this.blueprintCreated.emit({
       serverName: nameInput.value, 
-      serverContent: this.newServerContent});
+      serverContent: this.serverContentIput.nativeElement.value
+    });
   }
 
 
