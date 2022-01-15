@@ -1,10 +1,12 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, 
   DoCheck, 
+  ElementRef, 
   Input, 
   OnChanges,
   OnDestroy,
   OnInit, 
   SimpleChanges, 
+  ViewChild, 
   ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -21,14 +23,23 @@ AfterContentInit,
 AfterContentChecked,
 AfterViewChecked,
 AfterViewInit, 
-OnDestroy
+OnDestroy,
+ViewChild
   {
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
 
   constructor() { 
     console.log('constructor called!')
   }
+  descendants: boolean;
+  emitDistinctChangesOnly: boolean;
+  first: boolean;
+  read: any;
+  isViewQuery: boolean;
+  selector: any;
+  static?: boolean;
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges called!');
@@ -36,7 +47,8 @@ OnDestroy
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit called!')
+    console.log('ngOnInit called!');
+    console.log('Text Content: ' + this.header.nativeElement.textContent);
   }
 
   ngDoCheck(): void {
@@ -53,6 +65,7 @@ OnDestroy
 
   ngAfterViewInit(){
     console.log('ngAfterViewInit called!')
+    console.log('Text Content: ' + this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked(){
