@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  
+  onIntervalFired(firedNumber: number){
+    console.log(firedNumber)
+  }
+
+
   serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
 
   onServerAdded( serverData: {serverName: string, serverContent: string}) {
@@ -31,6 +38,7 @@ export class AppComponent {
    onDestroyFirst(){
      this.serverElements.splice(0, 1)
    }
+
 
 }
 

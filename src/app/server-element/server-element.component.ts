@@ -25,7 +25,6 @@ OnInit
   @ContentChild('contentParagraph') paragraph: ElementRef;
 
   constructor() { 
-    console.log('constructor called!')
   }
   descendants: boolean;
   emitDistinctChangesOnly: boolean;
